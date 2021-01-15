@@ -1,45 +1,36 @@
 import { 
   Form, 
   Select, 
-  InputNumber, 
   Input,
-  Radio,
-  Switch,
-  Slider, 
   Button, 
   Layout, 
   Menu, 
   Breadcrumb, 
-  Cascader,
-  Table, 
-  Tag, 
-  Space,
   DatePicker,
-  TreeSelect
-} from 'antd'
-import Head from 'next/head'
-import {useRouter} from 'next/router'
-import Link from 'next/link'
-import {createEmp,updateEmp,deleteEmp,deleteAllEmp} from '../../utils/fetch_fun'
-import {useState, useEffect, useReducer} from 'react'
-const { Header, Footer, Content } = Layout;
-const FormItem = Form.Item
-const Option = Select.Option
+} from 'antd';
+import Head from 'next/head';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+import {createEmp,updateEmp,deleteEmp,deleteAllEmp} from '../../utils/fetch_fun';
+import {useState, useEffect, useReducer} from 'react';
+const { Header, Footer, Content } = Layout;;
+const FormItem = Form.Item;
+const Option = Select.Option;
 
 
 
 export default function Hire(props) {
-  const router = useRouter()
-  const [body,  setBody ] = useState({First:'',Last:'',Act:'',Date:''})
+  const router = useRouter();
+  const [body,  setBody ] = useState({First:'',Last:'',Act:'',Date:''});
 
 // NOTE: line:94 if any of the form's inputs are blank, Hire button is disabled
 
 
   function handleChange(value) {
-    setBody({...body,Act:value})
+    setBody({...body,Act:value});
   }
   function changeDate(date, dateString) {
-    setBody({...body,Date:dateString})
+    setBody({...body,Date:dateString});
   }
 
   return (

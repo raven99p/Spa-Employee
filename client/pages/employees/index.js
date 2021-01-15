@@ -1,16 +1,16 @@
-import { Button, Layout, Menu, Breadcrumb, Table, Tag, Space } from 'antd'
-import Head from 'next/head'
-import {useRouter} from 'next/router'
-import Link from 'next/link'
-import {deleteEmp} from '../../utils/fetch_fun'
+import { Button, Layout, Menu, Breadcrumb, Table, Space, Alert, notification } from 'antd';
+import Head from 'next/head';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+import {deleteEmp} from '../../utils/fetch_fun';
 const { Header, Footer, Content } = Layout;
 
 
 export async function getServerSideProps() {
-  console.log('fetching..')
+  console.log('fetching..');
   try {
-    const res = await fetch(`http://localhost:2020/Employee`, {method: 'GET'})
-    const data = await res.json()
+    const res = await fetch(`http://localhost:2020/Employee`, {method: 'GET'});
+    const data = await res.json();
     if(!data)
     return {
       notFound: true,
@@ -20,14 +20,54 @@ export async function getServerSideProps() {
         data,
       },
     }}catch(e) {
-        console.log(e)
+        console.log(e);
+        const error = true
+        return {
+          props:{
+            error,
+          },
+        }
       }
+    
 }
 
+
 export default function Employees(props) {
-  const router = useRouter()
-  const data = props.data
-  // NOTE: This are the colomn of the table
+  const router = useRouter();
+  if(props.error){
+    router.replace('/employees/error');
+  }
+  const data = props.data;  
+  
+  
+
+  // NOTE: These are the colomn of the table
+  const close = () => {
+    console.log(
+      'Notification was closed. Either the close button was clicked or duration time elapsed.',
+    );
+  };
+  const openNotification = (id) => {
+    const key = `open${Date.now()}`;
+    const btn = (
+      <Button type="primary" size="small" onClick={() => {notification.close(key);deleteEmp(id)}}>
+        Delete
+      </Button>
+    );
+    notification.open({
+      message: 'Confirm deletion',
+      description:
+        'Press delete if you wish to delete this employee ',
+      btn,
+      key,
+      onClose: close,
+    });
+  };
+
+
+
+
+
   const columns = [ 
       {
         title: 'Id',
@@ -64,7 +104,7 @@ export default function Employees(props) {
             <Button size="small" type="primary" onClick={()=>router.push('/employees/' + text.id)}>
               Edit
             </Button>
-            <Button size="small" type="primary" onClick={()=>deleteEmp(text.id)}>
+            <Button size="small" type="primary" onClick={()=>openNotification(text.id)}>
               Delete
             </Button>
           </Space>
@@ -77,7 +117,6 @@ export default function Employees(props) {
         <title>Postem</title>
     </Head>
     <Header>
-      <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
         <Menu.Item key="1" >
         <Link href="/">

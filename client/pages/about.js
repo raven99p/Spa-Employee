@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import Head from 'next/head'
+import Link from 'next/link';
 import { Divider, Typography } from 'antd';
 const { Title, Paragraph} = Typography;
 export default function About(){

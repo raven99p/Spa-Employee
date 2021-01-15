@@ -1,7 +1,6 @@
 import { Layout, Menu, Breadcrumb, Divider } from 'antd'
 import DatePicker from '../components/DatePicker'
 import Head from 'next/head'
-import {useRouter} from 'next/router'
 import Link from 'next/link'
 
 const { Header, Footer, Content } = Layout;
@@ -13,7 +12,6 @@ export default function Employee() {
         <title>Postem</title>
     </Head>
     <Header>
-      <div className="logo" />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
         <Menu.Item key="1" >
         <Link href="/">

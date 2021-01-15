@@ -1,37 +1,29 @@
 import { 
   Form, 
   Select, 
-  InputNumber, 
   Input,
-  Radio,
-  Switch,
-  Slider, 
   Button, 
   Layout, 
   Menu, 
   Breadcrumb, 
-  Cascader,
-  Table, 
-  Tag, 
-  Space,
   DatePicker,
-  TreeSelect
-} from 'antd'
-import Head from 'next/head'
-import {useRouter} from 'next/router'
-import Link from 'next/link'
-import {getEmpId,updateEmp} from '../../utils/fetch_fun'
-import {useState, useEffect, useReducer} from 'react'
-const { Header, Footer, Content } = Layout;
-const FormItem = Form.Item
-const Option = Select.Option
+} from 'antd';
+import Head from 'next/head';
+import {useRouter} from 'next/router';
+import Link from 'next/link';
+import {getEmpId,updateEmp} from '../../utils/fetch_fun';
+import {useState,} from 'react';
 import moment from 'moment';
+const { Header, Footer, Content } = Layout;
+const FormItem = Form.Item;
+const Option = Select.Option;
+
 
 export async function getServerSideProps(context) { 
-  console.log('fetching..')
+  console.log('fetching..');
   try {
-    const res = await fetch(`http://localhost:2020/Employee/${context.params.id}`, {method: 'GET'})
-    const data = await res.json()
+    const res = await fetch(`http://localhost:2020/Employee/${context.params.id}`, {method: 'GET'});
+    const data = await res.json();
     if(!data)
     return {
       notFound: true,
@@ -48,17 +40,15 @@ export async function getServerSideProps(context) {
 
 
 export default function Edit(props) {
-
-  const flag = "true"
-  const data = props.data.[0]
-  const [body,  setBody ] = useState({First:data.first_name,Last:data.last_name,Act:data.is_active,Date:data.date_of_birth,Id:data.id})
+  const data = props.data.[0];
+  const [body,  setBody ] = useState({First:data.first_name,Last:data.last_name,Act:data.is_active,Date:data.date_of_birth,Id:data.id});
   const dateFormat = 'YYYY/MM/DD';
 
   function changeAct(value) {
-    setBody({...body,Act:value})
+    setBody({...body,Act:value});
   }
   function changeDate(date, dateString) {
-    setBody({...body,Date:dateString})
+    setBody({...body,Date:dateString});
   }
 
 
