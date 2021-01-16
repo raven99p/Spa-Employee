@@ -8,7 +8,11 @@ TODO: Create a layout to import in every page instaid of rewriting code.
 
 
 
-# Be careful with
+# Bad Database practice
 
 1. Database connection leaking
-2. Callback hell - __not good__
+2. Callback hell
+
+# Good Database practive
+
+1. async/await requests
