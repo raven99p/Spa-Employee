@@ -1,3 +1,6 @@
+# FIX ME
+1.change function names to start with lowercase
+
 # Ant Design example
 
 This example shows how to use Next.js along with [Ant Design of React](https://ant.design). This is intended to show the integration of this UI toolkit with the Framework.
